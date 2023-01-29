@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 // Mui
-import { Button } from "@mui/material";
-import { House } from "@mui/icons-material";
+import { Switch, FormControlLabel } from "@mui/material";
+import { House, Build, AccountTree, Notes } from "@mui/icons-material";
 
 //styled components
 const Navlist = styled.div`
@@ -28,23 +28,38 @@ const PageButton = styled.button`
   height: 80px;
 `;
 
-function Nav() {
+function Nav({ onToggleSnow }) {
+  const navigate = useNavigate();
   return (
     <Navlist>
-      <ButtonDiv>
+      <FormControlLabel
+        control={<Switch onChange={onToggleSnow} color="default" />}
+        label="Snow"
+        style={{ color: "white" }}
+      />
+      <ButtonDiv onClick={() => navigate("/")}>
         <PageButton>
           <House />
           Home
         </PageButton>
       </ButtonDiv>
-      <ButtonDiv>
-        <PageButton>Skill</PageButton>
+      <ButtonDiv onClick={() => navigate("/skill")}>
+        <PageButton>
+          <Build />
+          Skill
+        </PageButton>
       </ButtonDiv>
-      <ButtonDiv>
-        <PageButton>Project</PageButton>
+      <ButtonDiv onClick={() => navigate("/project")}>
+        <PageButton>
+          <AccountTree />
+          Project
+        </PageButton>
       </ButtonDiv>
-      <ButtonDiv>
-        <PageButton>방명록</PageButton>
+      <ButtonDiv onClick={() => navigate("/guest")}>
+        <PageButton>
+          <Notes />
+          방명록
+        </PageButton>
       </ButtonDiv>
     </Navlist>
   );
